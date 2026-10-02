@@ -2,15 +2,12 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="theme-color" content="#54c7ec">
 
-    <title>Untuk Mimi 🌼</title>
-<!-- kmauu -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Untuk Mitha 🌼</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
@@ -20,466 +17,207 @@
 
 <body>
 
-    <!-- ========================================= -->
-    <!-- BACKGROUND DECORATION -->
-    <!-- ========================================= -->
-
-    <div class="background-decoration" aria-hidden="true">
-
-        <div class="sea-flower flower-1">✿</div>
-
-        <div class="sea-flower flower-2">✿</div>
-
-        <div class="sea-flower flower-3">✿</div>
-
-        <div class="sea-flower flower-4">✿</div>
-
-        <div class="sea-star star-1">★</div>
-
-        <div class="sea-star star-2">★</div>
-
-    </div>
-
-
-    <!-- ========================================= -->
-    <!-- BUBBLE CONTAINER -->
-    <!-- ========================================= -->
-
-    <div id="bubbleContainer"></div>
-
-
-    <!-- ========================================= -->
-    <!-- PARTICLE CONTAINER -->
-    <!-- ========================================= -->
-
-    <div id="particleContainer"></div>
-
-
-    <!-- ========================================= -->
+    <!-- ============================================= -->
     <!-- MUSIC -->
-    <!-- ========================================= -->
+    <!-- ============================================= -->
 
     <audio id="backgroundMusic" loop preload="auto">
         <source src="assets/music.mp3" type="audio/mpeg">
     </audio>
 
 
-    <!-- ========================================= -->
-    <!-- MUSIC BUTTON -->
-    <!-- ========================================= -->
+    <!-- ============================================= -->
+    <!-- GLOBAL DECORATIONS -->
+    <!-- ============================================= -->
 
-    <button
-        id="musicButton"
-        class="music-button hidden"
-        type="button"
-        aria-label="Play atau pause musik"
-    >
+    <div id="bubbleContainer"></div>
+    <div id="particleContainer"></div>
+
+
+    <!-- ============================================= -->
+    <!-- MUSIC BUTTON -->
+    <!-- ============================================= -->
+
+    <button id="musicButton" class="music-button hidden" type="button" aria-label="Musik">
         <span id="musicIcon">♫</span>
     </button>
 
 
-    <!-- ========================================= -->
-    <!-- OPENING -->
-    <!-- ========================================= -->
+    <!-- ============================================= -->
+    <!-- PAGE INDICATOR -->
+    <!-- ============================================= -->
 
-    <section id="opening" class="opening-screen">
-
-        <div class="opening-jelly jelly-1">🪼</div>
-
-        <div class="opening-jelly jelly-2">🪼</div>
-
-        <div class="opening-star">⭐</div>
-
-        <div class="opening-content">
-
-            <span class="opening-small">
-                🫧 ada titipan kecil nih 🫧
-            </span>
-
-            <div class="mini-sponge" aria-hidden="true">
-                <div class="sponge-eye eye-left">
-                    <span></span>
-                </div>
-
-                <div class="sponge-eye eye-right">
-                    <span></span>
-                </div>
-
-                <div class="sponge-mouth"></div>
-            </div>
-
-            <h1>
-                Hai,
-                <span>Mimi!</span>
-            </h1>
-
-            <p>
-                Tenang...
-                <br>
-                bukan tagihan kok.
-            </p>
-
-            <button id="openButton" class="main-button" type="button">
-                Bukaaa 🫧
-            </button>
-
-            <small>
-                pencet ajaa 👆
-            </small>
-
-        </div>
-
-        <div class="opening-ground">
-
-            <div class="coral coral-left">
-                🌿
-            </div>
-
-            <div class="shell">
-                🐚
-            </div>
-
-            <div class="coral coral-right">
-                🌱
-            </div>
-
-        </div>
-
-    </section>
+    <div id="pageIndicator" class="page-indicator hidden">
+        <span id="currentPage">1</span>
+        <span>/</span>
+        <span id="totalPage">10</span>
+    </div>
 
 
-    <!-- ========================================= -->
-    <!-- MAIN CONTENT -->
-    <!-- ========================================= -->
+    <!-- ============================================= -->
+    <!-- SLIDE CONTAINER -->
+    <!-- ============================================= -->
 
-    <main id="mainContent" class="main-content hidden">
+    <main id="slidesContainer" class="slides-container">
 
 
         <!-- ========================================= -->
-        <!-- HERO -->
+        <!-- SLIDE 1 : OPENING -->
         <!-- ========================================= -->
 
-        <section class="section hero-section reveal">
+        <section class="slide slide-opening active" data-slide="0">
 
-            <div class="hero-character">
-                <div class="cute-sponge">
-                    <div class="cute-face">
-                        <div class="cute-eyes">
-                            <span></span>
-                            <span></span>
-                        </div>
+            <div class="floating-jelly jelly-left">🪼</div>
+            <div class="floating-jelly jelly-right">🪼</div>
+            <div class="floating-star">⭐</div>
 
-                        <div class="cute-mouth"></div>
-                    </div>
-                </div>
+            <div class="slide-content centered">
 
-                <div class="hero-bubble hero-bubble-1"></div>
-
-                <div class="hero-bubble hero-bubble-2"></div>
-
-                <div class="hero-bubble hero-bubble-3"></div>
-            </div>
-
-            <span class="section-label">
-                🌊 welcome to...
-            </span>
-
-            <h2>
-                Hari yang semoga
-                <span>nggak terlalu ngeselin.</span>
-            </h2>
-
-            <div class="hello-card">
-
-                <span class="hello-wave">
-                    👋
+                <span class="opening-label" data-show>
+                    🫧 ada titipan kecil nih 🫧
                 </span>
 
-                <div>
-                    <small>
-                        Halo
-                    </small>
-
-                    <strong>
-                        Mimi 
-                    </strong>
+                <div class="cute-sponge big-sponge" data-show>
+                    <div class="sponge-eye eye-one"></div>
+                    <div class="sponge-eye eye-two"></div>
+                    <div class="sponge-smile"></div>
                 </div>
 
-            </div>
-
-            <p>
-                Ada sedikit sesuatu buat kamu.
-            </p>
-
-            <div class="scroll-hint">
-
-                <span>
-                    scroll pelan-pelan
-                </span>
-
-                <div class="scroll-arrow">
-                    ↓
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ========================================= -->
-        <!-- THANK YOU -->
-        <!-- ========================================= -->
-
-        <section class="section thank-section reveal">
-
-            <span class="section-label">
-                pertama...
-            </span>
-
-            <h2>
-                Makasih ya,
-                <span>Mimi.</span>
-            </h2>
-
-            <div class="short-note-grid">
-
-                <article class="short-note yellow-note">
-
-                    <span>
-                        🌼
-                    </span>
-
-                    <p>
-                        Udah nemenin hari-hariku.
-                    </p>
-
-                </article>
-
-
-                <article class="short-note pink-note">
-
-                    <span>
-                        💬
-                    </span>
-
-                    <p>
-                        Udah dengerin cerita random.
-                    </p>
-
-                </article>
-
-
-                <article class="short-note blue-note">
-
-                    <span>
-                        😂
-                    </span>
-
-                    <p>
-                        Udah ketawa bareng.
-                    </p>
-
-                </article>
-
-
-                <article class="short-note green-note">
-
-                    <span>
-                        ✨
-                    </span>
-
-                    <p>
-                        Dan udah jadi kamu.
-                    </p>
-
-                </article>
-
-            </div>
-
-            <div class="big-small-message">
-
-                <span>
-                    sederhana sih...
-                </span>
-
-                <strong>
-                    tapi aku senang kamu ada.
-                </strong>
-
-            </div>
-
-        </section>
-
-
-        <!-- ========================================= -->
-        <!-- PHOTO GALLERY -->
-        <!-- ========================================= -->
-
-        <section class="section photo-section reveal">
-
-            <span class="section-label">
-                📸 ini orangnya
-            </span>
-
-            <h2>
-                Beberapa
-                <span>Mimi.</span>
-            </h2>
-
-            <p class="photo-description">
-                Orang yang akhir-akhir ini sering muncul di hari-hariku.
-            </p>
-
-
-            <div class="photo-gallery">
-
-                <!-- FOTO 1 -->
-
-                <article class="photo-card rotate-left">
-
-                    <div class="photo-wrapper">
-
-                        <img
-                            src="assets/images/mimi-1.jpg"
-                            alt="Foto Mitha 1"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                        >
-
-                        <div class="photo-placeholder">
-
-                            <span>
-                                📷
-                            </span>
-
-                            <small>
-                                mitha-1.jpg
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                    <p>
-                        si paling sibuk 🌼
-                    </p>
-
-                </article>
-
-
-                <!-- FOTO 2 -->
-
-                <article class="photo-card rotate-right photo-down">
-
-                    <div class="photo-wrapper">
-
-                        <img
-                            src="assets/images/mimi-2.jpg"
-                            alt="Foto Mitha 2"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                        >
-
-                        <div class="photo-placeholder">
-
-                            <span>
-                                📷
-                            </span>
-
-                            <small>
-                                mitha-2.jpg
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                    <p>
-                        senyum dikit dong 😌
-                    </p>
-
-                </article>
-
-
-                <!-- FOTO 3 -->
-
-                <article class="photo-card rotate-right">
-
-                    <div class="photo-wrapper">
-
-                        <img
-                            src="assets/images/mimi-3.jpg"
-                            alt="Foto Mitha 3"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                        >
-
-                        <div class="photo-placeholder">
-
-                            <span>
-                                📷
-                            </span>
-
-                            <small>
-                                mitha-3.jpg
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                    <p>
-                        nah ini lucu 😭
-                    </p>
-
-                </article>
-
-
-                <!-- FOTO 4 -->
-
-                <article class="photo-card rotate-left photo-down">
-
-                    <div class="photo-wrapper">
-
-                        <img
-                            src="assets/images/mimi-4.jpg"
-                            alt="Foto Mitha 4"
-                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                        >
-
-                        <div class="photo-placeholder">
-
-                            <span>
-                                📷
-                            </span>
-
-                            <small>
-                                mitha-4.jpg
-                            </small>
-
-                        </div>
-
-                    </div>
-
-                    <p>
-                        Mimi  ✨
-                    </p>
-
-                </article>
-
-            </div>
-
-
-            <div class="photo-footer">
-
-                <span>
-                    🫧
-                </span>
-
-                <p>
-                    lucu juga ternyata.
+                <h1 class="opening-title" data-show>
+                    Hai,
+                    <span>Mitha!</span>
+                </h1>
+
+                <p class="opening-description" data-show>
+                    Tenang...
+                    <br>
+                    bukan tagihan kok.
                 </p>
 
-                <span>
-                    🫧
+                <button id="startButton" class="primary-button" type="button" data-show>
+                    Bukaaa 🫧
+                </button>
+
+            </div>
+
+            <div class="sea-floor">
+                <span>🌿</span>
+                <span>🐚</span>
+                <span>🌱</span>
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+        <!-- SLIDE 2 : INTRO -->
+        <!-- ========================================= -->
+
+        <section class="slide slide-cream" data-slide="1">
+
+            <div class="slide-content">
+
+                <span class="section-label" data-show>
+                    🌊 welcome to...
                 </span>
+
+                <h2 data-show>
+                    Hari yang semoga
+                    <span class="blue-text">
+                        nggak terlalu ngeselin.
+                    </span>
+                </h2>
+
+                <div class="hello-card" data-show>
+
+                    <span class="hello-emoji">
+                        👋
+                    </span>
+
+                    <div>
+                        <small>Halo</small>
+                        <strong>Mitha Rosiana</strong>
+                    </div>
+
+                </div>
+
+                <p class="short-text" data-show>
+                    Ada sedikit sesuatu buat kamu.
+                </p>
+
+                <p class="tiny-note" data-show>
+                    Bacanya pelan-pelan ajaa 🫧
+                </p>
+
+            </div>
+
+            <div class="navigation">
+                <button class="nav-button next-button" type="button">
+                    Lanjut
+                    <span>→</span>
+                </button>
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+        <!-- SLIDE 3 : THANK YOU -->
+        <!-- ========================================= -->
+
+        <section class="slide slide-yellow" data-slide="2">
+
+            <div class="slide-content">
+
+                <span class="section-label" data-show>
+                    pertama...
+                </span>
+
+                <h2 data-show>
+                    Makasih ya,
+                    <span class="yellow-dark-text">Mitha.</span>
+                </h2>
+
+                <div class="four-card-grid">
+
+                    <article class="mini-card yellow-card" data-show>
+                        <span>🌼</span>
+                        <p>Udah nemenin hari-hariku.</p>
+                    </article>
+
+                    <article class="mini-card pink-card" data-show>
+                        <span>💬</span>
+                        <p>Udah dengerin cerita random.</p>
+                    </article>
+
+                    <article class="mini-card blue-card" data-show>
+                        <span>😂</span>
+                        <p>Udah ketawa bareng.</p>
+                    </article>
+
+                    <article class="mini-card green-card" data-show>
+                        <span>✨</span>
+                        <p>Dan udah jadi kamu.</p>
+                    </article>
+
+                </div>
+
+                <div class="simple-message" data-show>
+                    <small>Sederhana sih...</small>
+                    <strong>tapi aku senang kamu ada.</strong>
+                </div>
+
+            </div>
+
+            <div class="navigation">
+
+                <button class="nav-button back-button" type="button">
+                    ←
+                </button>
+
+                <button class="nav-button next-button" type="button">
+                    Lanjut →
+                </button>
 
             </div>
 
@@ -487,72 +225,181 @@
 
 
         <!-- ========================================= -->
-        <!-- OCEAN BREAK -->
+        <!-- SLIDE 4 : PHOTOS -->
         <!-- ========================================= -->
 
-        <section class="ocean-break reveal">
+        <section class="slide slide-white" data-slide="3">
+
+            <div class="slide-content">
+
+                <span class="section-label" data-show>
+                    📸 ini orangnya
+                </span>
+
+                <h2 class="compact-title" data-show>
+                    Beberapa
+                    <span class="blue-text">Mitha.</span>
+                </h2>
+
+                <div class="photo-grid">
+
+                    <article class="photo-card rotate-left" data-show>
+
+                        <div class="photo-container">
+
+                            <img
+                                src="assets/images/mimi-1.jpg"
+                                alt="Foto Mitha 1"
+                                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="photo-placeholder">
+                                <span>📷</span>
+                                <small>mitha-1.jpg</small>
+                            </div>
+
+                        </div>
+
+                        <p>si paling sibuk 🌼</p>
+
+                    </article>
+
+
+                    <article class="photo-card rotate-right" data-show>
+
+                        <div class="photo-container">
+
+                            <img
+                                src="assets/images/mimi-2.jpg"
+                                alt="Foto Mitha 2"
+                                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="photo-placeholder">
+                                <span>📷</span>
+                                <small>mitha-2.jpg</small>
+                            </div>
+
+                        </div>
+
+                        <p>senyum dikit 😌</p>
+
+                    </article>
+
+
+                    <article class="photo-card rotate-right" data-show>
+
+                        <div class="photo-container">
+
+                            <img
+                                src="assets/images/mimi-3.jpg"
+                                alt="Foto Mitha 3"
+                                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="photo-placeholder">
+                                <span>📷</span>
+                                <small>mitha-3.jpg</small>
+                            </div>
+
+                        </div>
+
+                        <p>nah ini lucu 😭</p>
+
+                    </article>
+
+
+                    <article class="photo-card rotate-left" data-show>
+
+                        <div class="photo-container">
+
+                            <img
+                                src="assets/images/mimi-4.jpg"
+                                alt="Foto Mitha 4"
+                                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                            >
+
+                            <div class="photo-placeholder">
+                                <span>📷</span>
+                                <small>mitha-4.jpg</small>
+                            </div>
+
+                        </div>
+
+                        <p>Mitha Rosiana ✨</p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+            <div class="navigation">
+
+                <button class="nav-button back-button" type="button">
+                    ←
+                </button>
+
+                <button class="nav-button next-button" type="button">
+                    Lanjut →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+        <!-- SLIDE 5 : UNDERWATER MESSAGE -->
+        <!-- ========================================= -->
+
+        <section class="slide slide-ocean" data-slide="4">
 
             <div class="ocean-light"></div>
 
-            <div class="ocean-jelly ocean-jelly-1">
-                🪼
-            </div>
+            <div class="ocean-creature jelly-a">🪼</div>
+            <div class="ocean-creature jelly-b">🪼</div>
+            <div class="ocean-creature fish-a">🐠</div>
+            <div class="ocean-creature fish-b">🐟</div>
 
-            <div class="ocean-jelly ocean-jelly-2">
-                🪼
-            </div>
+            <div class="slide-content ocean-content centered">
 
-            <div class="ocean-jelly ocean-jelly-3">
-                🪼
-            </div>
-
-            <div class="ocean-fish fish-1">
-                🐠
-            </div>
-
-            <div class="ocean-fish fish-2">
-                🐟
-            </div>
-
-            <div class="ocean-overlay">
-
-                <span class="ocean-label">
+                <span class="ocean-label" data-show>
                     🫧 pesan dari bawah laut 🫧
                 </span>
 
-                <h2>
-                    Mimi...
+                <h2 class="ocean-title" data-show>
+                    Mitha...
                 </h2>
 
-                <p>
+                <p class="ocean-message" data-show>
                     Jangan lupa
                     <strong>senang-senang</strong>
                     juga ya.
                 </p>
 
+                <div class="ocean-small-card" data-show>
+                    🌤️ Hari yang capek juga boleh selesai dengan santai.
+                </div>
+
             </div>
 
-            <div class="ocean-floor">
+            <div class="sea-floor ocean-floor">
+                <span>🌿</span>
+                <span>🪸</span>
+                <span>🐚</span>
+                <span>🌱</span>
+            </div>
 
-                <span>
-                    🌿
-                </span>
+            <div class="navigation light-navigation">
 
-                <span>
-                    🪸
-                </span>
+                <button class="nav-button back-button" type="button">
+                    ←
+                </button>
 
-                <span>
-                    🐚
-                </span>
-
-                <span>
-                    🌱
-                </span>
-
-                <span>
-                    🪸
-                </span>
+                <button class="nav-button next-button" type="button">
+                    Lanjut →
+                </button>
 
             </div>
 
@@ -560,595 +407,400 @@
 
 
         <!-- ========================================= -->
-        <!-- REMINDER -->
+        <!-- SLIDE 6 : REMINDER -->
         <!-- ========================================= -->
 
-        <section class="section reminder-section reveal">
+        <section class="slide slide-soft-yellow" data-slide="5">
 
-            <div class="reminder-title-icon">
-                🧽
-            </div>
+            <div class="slide-content">
 
-            <span class="section-label">
-                sedikit pengingat
-            </span>
-
-            <h2>
-                Buat Mimi.
-            </h2>
-
-
-            <div class="simple-reminder-list">
-
-                <div class="simple-reminder">
-
-                    <div class="reminder-question">
-                        Capek?
-                    </div>
-
-                    <div class="reminder-answer">
-                        Istirahat. 😴
-                    </div>
-
-                </div>
-
-
-                <div class="simple-reminder">
-
-                    <div class="reminder-question">
-                        Lapar?
-                    </div>
-
-                    <div class="reminder-answer">
-                        Makan. 🍜
-                    </div>
-
-                </div>
-
-
-                <div class="simple-reminder">
-
-                    <div class="reminder-question">
-                        Ngantuk?
-                    </div>
-
-                    <div class="reminder-answer">
-                        Tidur. 🛌
-                    </div>
-
-                </div>
-
-
-                <div class="simple-reminder">
-
-                    <div class="reminder-question">
-                        Banyak pikiran?
-                    </div>
-
-                    <div class="reminder-answer">
-                        Satu-satu dulu. 🌱
-                    </div>
-
-                </div>
-
-
-                <div class="simple-reminder highlight-reminder">
-
-                    <div class="reminder-question">
-                        Pengen nyeblak?
-                    </div>
-
-                    <div class="reminder-answer">
-                        Nah ini prioritas. 🌶️
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <div class="sponge-message">
-
-                <div class="sponge-message-icon">
+                <span class="big-emoji" data-show>
                     🧽
-                </div>
-
-                <p>
-                    Kamu manusia.
-                </p>
-
-                <strong>
-                    Bukan spons yang harus menyerap semua masalah.
-                </strong>
-
-                <span>
-                    😭
                 </span>
 
+                <span class="section-label" data-show>
+                    sedikit pengingat
+                </span>
+
+                <h2 class="compact-title" data-show>
+                    Buat Mitha.
+                </h2>
+
+                <div class="reminder-list">
+
+                    <div class="reminder-row" data-show>
+                        <span>Capek?</span>
+                        <strong>Istirahat. 😴</strong>
+                    </div>
+
+                    <div class="reminder-row" data-show>
+                        <span>Lapar?</span>
+                        <strong>Makan. 🍜</strong>
+                    </div>
+
+                    <div class="reminder-row" data-show>
+                        <span>Ngantuk?</span>
+                        <strong>Tidur. 🛌</strong>
+                    </div>
+
+                    <div class="reminder-row" data-show>
+                        <span>Banyak pikiran?</span>
+                        <strong>Satu-satu dulu. 🌱</strong>
+                    </div>
+
+                    <div class="reminder-row priority-row" data-show>
+                        <span>Pengen nyeblak?</span>
+                        <strong>PRIORITAS. 🌶️</strong>
+                    </div>
+
+                </div>
+
+                <div class="sponge-reminder" data-show>
+                    <span>🧽</span>
+
+                    <p>
+                        Kamu manusia.
+                    </p>
+
+                    <strong>
+                        Bukan spons penyerap masalah.
+                    </strong>
+                </div>
+
+            </div>
+
+            <div class="navigation">
+
+                <button class="nav-button back-button" type="button">
+                    ←
+                </button>
+
+                <button class="nav-button next-button" type="button">
+                    Lanjut →
+                </button>
+
             </div>
 
         </section>
 
 
         <!-- ========================================= -->
-        <!-- ENCOURAGEMENT -->
+        <!-- SLIDE 7 : RANDOM CHEER -->
         <!-- ========================================= -->
 
-        <section class="section encouragement-section reveal">
+        <section class="slide slide-fun" data-slide="6">
 
-            <span class="section-label">
-                🌤️ terus...
-            </span>
+            <div class="slide-content centered">
 
-            <h2>
-                Semangat ya.
-            </h2>
+                <span class="big-emoji bounce-emoji" data-show>
+                    🫠
+                </span>
 
-            <div class="encouragement-box">
+                <span class="section-label" data-show>
+                    kalau hari ini berat...
+                </span>
 
-                <div>
-                    🌱
-                </div>
+                <h2 data-show>
+                    Pencet ini.
+                </h2>
 
-                <p>
-                    Pelan-pelan juga
-                    <strong>tetap jalan.</strong>
+                <p class="short-text" data-show>
+                    Nggak menjamin masalah selesai.
                 </p>
 
-            </div>
-
-
-            <div class="encouragement-box">
-
-                <div>
-                    ☁️
-                </div>
-
-                <p>
-                    Nggak semua harus
-                    <strong>selesai hari ini.</strong>
-                </p>
-
-            </div>
-
-
-            <div class="encouragement-box">
-
-                <div>
-                    🌞
-                </div>
-
-                <p>
-                    Hari jelek
-                    <strong>nggak berarti hidup jelek.</strong>
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- ========================================= -->
-        <!-- RANDOM BUTTON -->
-        <!-- ========================================= -->
-
-        <section class="section fun-section reveal">
-
-            <div class="fun-character">
-                🫠
-            </div>
-
-            <span class="section-label">
-                kalau hari ini berat...
-            </span>
-
-            <h2>
-                Pencet ini.
-            </h2>
-
-            <p>
-                Nggak menjamin masalah selesai sih.
-            </p>
-
-            <p>
-                Tapi coba aja dulu.
-            </p>
-
-
-            <button id="cheerButton" class="cheer-button" type="button">
-
-                <span>
+                <button id="cheerButton" class="cheer-button" type="button" data-show>
                     Aku lagi capek
-                </span>
+                </button>
 
-                <small>
-                    pencet sini
-                </small>
+                <div id="cheerMessage" class="cheer-result" data-show>
 
-            </button>
+                    <span id="messageEmoji">
+                        🫧
+                    </span>
 
+                    <p id="messageText">
+                        Pesannya muncul di sini.
+                    </p>
 
-            <div id="cheerMessage" class="cheer-message">
+                </div>
 
-                <span id="messageEmoji" class="cheer-emoji">
-                    🫧
-                </span>
-
-                <p id="messageText">
-                    Pesannya bakal muncul di sini.
-                </p>
+                <button id="anotherButton" class="another-button hidden" type="button">
+                    satu lagi dong →
+                </button>
 
             </div>
 
+            <div class="navigation">
 
-            <button id="anotherButton" class="another-button hidden" type="button">
-                satu lagi dong →
-            </button>
+                <button class="nav-button back-button" type="button">
+                    ←
+                </button>
 
-        </section>
-
-
-        <!-- ========================================= -->
-        <!-- RANDOM SMALL CARDS -->
-        <!-- ========================================= -->
-
-        <section class="section little-things-section reveal">
-
-            <span class="section-label">
-                kalau masih belum mempan...
-            </span>
-
-            <h2>
-                Coba ini.
-            </h2>
-
-
-            <div class="little-things">
-
-                <div class="little-card">
-
-                    <span>
-                        🍦
-                    </span>
-
-                    <strong>
-                        Es krim
-                    </strong>
-
-                    <small>
-                        hampir selalu ide bagus
-                    </small>
-
-                </div>
-
-
-                <div class="little-card">
-
-                    <span>
-                        ☕
-                    </span>
-
-                    <strong>
-                        Kopi
-                    </strong>
-
-                    <small>
-                        duuluuu ga siii
-                    </small>
-
-                </div>
-
-
-                <div class="little-card">
-
-                    <span>
-                        🌶️
-                    </span>
-
-                    <strong>
-                        Seblak
-                    </strong>
-
-                    <small>
-                        terapi versi pedas
-                    </small>
-
-                </div>
-
-
-                <div class="little-card">
-
-                    <span>
-                        🎧
-                    </span>
-
-                    <strong>
-                        Musik
-                    </strong>
-
-                    <small>
-                        dunia mute dulu
-                    </small>
-
-                </div>
-
-
-                <div class="little-card">
-
-                    <span>
-                        🛌
-                    </span>
-
-                    <strong>
-                        Rebahan
-                    </strong>
-
-                    <small>
-                        15 menit katanya...
-                    </small>
-
-                </div>
-
-
-                <div class="little-card">
-
-                    <span>
-                        🌤️
-                    </span>
-
-                    <strong>
-                        Keluar bentar
-                    </strong>
-
-                    <small>
-                        cari angin, bukan masalah
-                    </small>
-
-                </div>
+                <button class="nav-button next-button" type="button">
+                    Lanjut →
+                </button>
 
             </div>
 
         </section>
 
+
         <!-- ========================================= -->
-<!-- SCHOOL MEMORY -->
-<!-- ========================================= -->
+        <!-- SLIDE 8 : SMALL THINGS -->
+        <!-- ========================================= -->
 
-<section class="school-memory-section reveal">
+        <section class="slide slide-blue-soft" data-slide="7">
 
-    <div class="school-bubbles" aria-hidden="true">
-        <span>🫧</span>
-        <span>🫧</span>
-        <span>⭐</span>
-    </div>
+            <div class="slide-content">
 
-    <div class="school-memory-content">
-
-        <span class="section-label">
-            ternyata udah dari dulu...
-        </span>
-
-        <h2>
-            Dari masa
-            <span>sekolah.</span>
-        </h2>
-
-        <div class="old-photo-card">
-
-            <div class="old-photo-tape tape-left"></div>
-            <div class="old-photo-tape tape-right"></div>
-
-            <div class="old-photo-wrapper">
-
-                <img
-                    src="assets/images/kita-sekolah.jpg"
-                    alt="Foto Mimi dan aku saat sekolah"
-                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                >
-
-                <div class="old-photo-placeholder">
-
-                    <span>📸</span>
-
-                    <strong>
-                        Foto kita waktu sekolah
-                    </strong>
-
-                    <small>
-                        assets/images/kita-sekolah.jpg
-                    </small>
-
-                </div>
-
-            </div>
-
-            <div class="old-photo-caption">
-
-                <span>
-                    throwback dikit 📚
+                <span class="section-label" data-show>
+                    kalau masih belum mempan...
                 </span>
 
-                <strong>
-                    ternyata kita pernah se-culun ini.
-                </strong>
+                <h2 class="compact-title" data-show>
+                    Coba ini.
+                </h2>
+
+                <div class="little-grid">
+
+                    <div class="little-card" data-show>
+                        <span>🍦</span>
+                        <strong>Es Krim</strong>
+                        <small>kayanya enak</small>
+                    </div>
+
+                    <div class="little-card" data-show>
+                        <span>☕</span>
+                        <strong>Kopi</strong>
+                        <small>duuluuu ga siii</small>
+                    </div>
+
+                    <div class="little-card" data-show>
+                        <span>🌶️</span>
+                        <strong>Seblak</strong>
+                        <small>terapi versi pedas</small>
+                    </div>
+
+                    <div class="little-card" data-show>
+                        <span>🎧</span>
+                        <strong>Musik</strong>
+                        <small>dunia mute dulu</small>
+                    </div>
+
+                    <div class="little-card" data-show>
+                        <span>🛌</span>
+                        <strong>Rebahan</strong>
+                        <small>15 menit katanya</small>
+                    </div>
+
+                    <div class="little-card" data-show>
+                        <span>🌤️</span>
+                        <strong>Keluar</strong>
+                        <small>cari angin dulu</small>
+                    </div>
+
+                </div>
 
             </div>
 
-        </div>
+            <div class="navigation">
 
+                <button class="nav-button back-button" type="button">
+                    ←
+                </button>
 
-        <div class="school-memory-message">
+                <button class="nav-button next-button" type="button">
+                    Lanjut →
+                </button>
 
-            <span class="school-memory-icon">
-                🥹
-            </span>
+            </div>
 
-            <p>
-                Lucu juga kalau dipikir-pikir.
-            </p>
+        </section>
 
-            <strong>
-                Dari masa sekolah,
-                <br>
-                sampai bisa ngobrol lagi sejauh ini.
-            </strong>
-
-        </div>
-
-
-        <div class="school-small-message">
-
-            <span>🫧</span>
-
-            <p>
-                Banyak yang berubah.
-                <br>
-                Tapi aku tetap senang
-                <br>
-                bisa kenal kamu.
-            </p>
-
-            <span>🌼</span>
-
-        </div>
-
-    </div>
-
-</section>
 
         <!-- ========================================= -->
-        <!-- THANK YOU FINAL -->
+        <!-- SLIDE 9 : SCHOOL MEMORY -->
         <!-- ========================================= -->
 
-        <section class="section final-message-section reveal">
+        <section class="slide slide-memory" data-slide="8">
 
-            <div class="final-card">
+            <div class="slide-content centered">
 
-                <div class="final-jelly">
-                    🪼
+                <span class="section-label" data-show>
+                    ternyata udah dari dulu...
+                </span>
+
+                <h2 class="memory-title" data-show>
+                    Dari masa
+                    <span>sekolah.</span>
+                </h2>
+
+                <article class="school-photo-card" data-show>
+
+                    <div class="photo-tape tape-one"></div>
+                    <div class="photo-tape tape-two"></div>
+
+                    <div class="school-photo-wrapper">
+
+                        <img
+                            src="assets/images/kita-sekolah.jpg"
+                            alt="Foto kita waktu sekolah"
+                            onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+                        >
+
+                        <div class="school-placeholder">
+
+                            <span>📸</span>
+
+                            <strong>
+                                Foto kita waktu sekolah
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                    <p>
+                        throwback dikit 📚
+                    </p>
+
+                </article>
+
+                <div class="memory-message" data-show>
+
+                    <span>
+                        🥹
+                    </span>
+
+                    <p>
+                        Lucu juga kalau dipikir-pikir.
+                    </p>
+
+                    <strong>
+                        Dari masa sekolah...
+                        <br>
+                        sampai bisa ngobrol lagi sejauh ini.
+                    </strong>
+
                 </div>
 
-                <span class="section-label">
+                <!-- PANGGILAN KHUSUS -->
+
+                <div class="mimi-message" data-show>
+
+                    <small>
+                        dan buat kamu...
+                    </small>
+
+                    <strong>
+                        Mimi.
+                    </strong>
+
+                    <p>
+                        Aku tetap senang
+                        <br>
+                        bisa kenal kamu.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="navigation">
+
+                <button class="nav-button back-button" type="button">
+                    ←
+                </button>
+
+                <button class="nav-button next-button" type="button">
+                    Lanjut →
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================= -->
+        <!-- SLIDE 10 : ENDING -->
+        <!-- ========================================= -->
+
+        <section class="slide slide-ending" data-slide="9">
+
+            <div class="slide-content centered">
+
+                <span class="ending-emoji" data-show>
+                    🌤️
+                </span>
+
+                <span class="section-label" data-show>
                     sebelum selesai...
                 </span>
 
-                <h2>
+                <h2 data-show>
                     Makasih ya,
-                    <span>Mimi.</span>
+                    <span class="blue-text">
+                        Mimi.
+                    </span>
                 </h2>
 
-                <p>
-                    Udah ada.
-                </p>
+                <div class="ending-message" data-show>
 
-                <p>
-                    Udah nemenin.
-                </p>
+                    <p>
+                        Udah ada.
+                    </p>
 
-                <p>
-                    Udah bikin hari-hari jadi lebih rame.
-                </p>
+                    <p>
+                        Udah nemenin.
+                    </p>
 
-                <div class="final-divider"></div>
+                    <p>
+                        Udah bikin hari-hari
+                        <br>
+                        jadi lebih rame.
+                    </p>
 
-                <strong class="final-highlight">
+                </div>
+
+                <div class="ending-highlight" data-show>
                     Aku senang ditemani kamu.
-                </strong>
+                </div>
 
-            </div>
+                <div class="ending-final" data-show>
 
-        </section>
+                    <span>
+                        Semoga besok lebih menyenangkan.
+                    </span>
 
+                    <small>
+                        Kalau nggak...
+                    </small>
 
-        <!-- ========================================= -->
-        <!-- ENDING -->
-        <!-- ========================================= -->
+                    <strong>
+                        kita cari es krim. 🍦
+                    </strong>
 
-        <section class="section ending-section reveal">
+                </div>
 
-            <div class="ending-sun">
-                🌤️
-            </div>
-
-            <h2>
-                Semoga besok
-                <span>lebih menyenangkan.</span>
-            </h2>
-
-            <p>
-                Kalau nggak...
-            </p>
-
-            <div class="ending-answer">
-                yaudah.
-            </div>
-
-            <div class="ending-answer big-ending-answer">
-                kita cari es krim. 🍦
-            </div>
-
-
-            <button id="lastMessageButton" class="last-message-button" type="button">
-                ada satu lagi 🫧 Pencet aku 
-            </button>
-
-
-            <div id="lastMessage" class="last-message hidden">
-
-                <span class="last-message-emoji">
-                    🌼
-                </span>
-
-                <p>
-                    Jangan terlalu keras
+                <p class="signature" data-show>
+                    makasih udah ada.
                     <br>
-                    sama diri sendiri ya.
+                    <small>— seseorang yang senang ditemani kamu</small>
                 </p>
 
-                <strong>
-                    Kamu udah sejauh ini.
-                </strong>
+                <button id="restartButton" class="restart-button" type="button" data-show>
+                    ulang dari awal ↻
+                </button>
 
             </div>
 
+            <div class="navigation final-navigation">
 
-            <div class="signature">
-
-                <span>
-                    makasih udah ada.
-                </span>
-
-                <small>
-                    — seseorang yang senang ditemani kamu
-                </small>
+                <button class="nav-button back-button" type="button">
+                    ←
+                </button>
 
             </div>
-
-
-            <div class="ending-ocean">
-
-                <span class="ending-plant">
-                    🌿
-                </span>
-
-                <span class="ending-shell">
-                    🐚
-                </span>
-
-                <span class="ending-star">
-                    ⭐
-                </span>
-
-                <span class="ending-plant">
-                    🌱
-                </span>
-
-            </div>
-
-
-            <footer>
-                made with care for Mimi 🌼
-            </footer>
 
         </section>
 

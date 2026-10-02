@@ -2,11 +2,15 @@
 // ELEMENTS
 // ======================================================
 
-const opening = document.getElementById("opening");
+const slides = [...document.querySelectorAll(".slide")];
 
-const mainContent = document.getElementById("mainContent");
+const startButton = document.getElementById("startButton");
 
-const openButton = document.getElementById("openButton");
+const nextButtons = document.querySelectorAll(".next-button");
+
+const backButtons = document.querySelectorAll(".back-button");
+
+const restartButton = document.getElementById("restartButton");
 
 
 const backgroundMusic = document.getElementById("backgroundMusic");
@@ -16,20 +20,22 @@ const musicButton = document.getElementById("musicButton");
 const musicIcon = document.getElementById("musicIcon");
 
 
+const pageIndicator = document.getElementById("pageIndicator");
+
+const currentPageElement = document.getElementById("currentPage");
+
+const totalPageElement = document.getElementById("totalPage");
+
+
 const cheerButton = document.getElementById("cheerButton");
 
 const anotherButton = document.getElementById("anotherButton");
 
 const cheerMessage = document.getElementById("cheerMessage");
 
-const messageText = document.getElementById("messageText");
-
 const messageEmoji = document.getElementById("messageEmoji");
 
-
-const lastMessageButton = document.getElementById("lastMessageButton");
-
-const lastMessage = document.getElementById("lastMessage");
+const messageText = document.getElementById("messageText");
 
 
 const bubbleContainer = document.getElementById("bubbleContainer");
@@ -38,21 +44,29 @@ const particleContainer = document.getElementById("particleContainer");
 
 
 // ======================================================
-// VARIABLES
+// STATE
 // ======================================================
+
+let currentSlide = 0;
+
+let isTransitioning = false;
+
+let websiteStarted = false;
 
 let musicPlaying = false;
 
 let lastCheerIndex = -1;
 
-let websiteOpened = false;
+let animationTimers = [];
 
 
 // ======================================================
-// MUSIC SETTING
+// SETTINGS
 // ======================================================
 
-backgroundMusic.volume = 0.32;
+backgroundMusic.volume = 0.22;
+
+totalPageElement.textContent = slides.length;
 
 
 // ======================================================
@@ -77,7 +91,7 @@ const cheerMessages = [
     },
 
     {
-        text: "Makan dulu Mitha. Jangan cuma mikirin hidup.",
+        text: "Makan dulu Mimi. Jangan cuma mikirin hidup.",
         emoji: "🍜"
     },
 
@@ -92,12 +106,12 @@ const cheerMessages = [
     },
 
     {
-        text: "Hari ini berat? Kita jalanin versi easy mode dulu.",
+        text: "Hari ini berat? Easy mode dulu.",
         emoji: "🎮"
     },
 
     {
-        text: "Rebahan 15 menit. 15 menit ya... bukan 5 jam.",
+        text: "Rebahan 15 menit. Katanya.",
         emoji: "🛌"
     },
 
@@ -107,7 +121,7 @@ const cheerMessages = [
     },
 
     {
-        text: "Jalan bentar yuk. Cari angin, jangan cari masalah.",
+        text: "Cari angin. Jangan cari masalah.",
         emoji: "🌤️"
     },
 
@@ -127,22 +141,22 @@ const cheerMessages = [
     },
 
     {
-        text: "Satu-satu dulu. Jangan semuanya dipikirin barengan.",
+        text: "Satu-satu dulu. Jangan semuanya dipikirin.",
         emoji: "🌱"
     },
 
     {
-        text: "Hari jelek nggak berarti hidupmu jelek.",
+        text: "Hari jelek bukan berarti hidup jelek.",
         emoji: "🌤️"
     },
 
     {
-        text: "Besok masih ada kesempatan buat nyoba lagi.",
+        text: "Besok masih bisa coba lagi.",
         emoji: "🌅"
     },
 
     {
-        text: "Mungkin kamu cuma butuh tidur cukup malam ini.",
+        text: "Tidur cukup dulu malam ini.",
         emoji: "🌙"
     },
 
@@ -157,7 +171,7 @@ const cheerMessages = [
     },
 
     {
-        text: "Nggak ada lomba siapa yang paling cepat beres.",
+        text: "Nggak ada lomba siapa paling cepat.",
         emoji: "🏁"
     },
 
@@ -167,22 +181,22 @@ const cheerMessages = [
     },
 
     {
-        text: "Jajan dulu. Anggap aja investasi mood.",
+        text: "Jajan dulu. Investasi mood.",
         emoji: "🍪"
     },
 
     {
-        text: "Kalau bingung mau ngapain... tidur siang juga keputusan.",
+        text: "Tidur siang juga sebuah keputusan.",
         emoji: "💤"
     },
 
     {
-        text: "Senyum kalau bisa. Kalau nggak bisa ya nggak usah dipaksa 😭",
+        text: "Senyum kalau bisa. Kalau nggak, yaudah 😭",
         emoji: "😂"
     },
 
     {
-        text: "Mitha, jangan lupa makan ya. Ini perintah.",
+        text: "Mimi, jangan lupa makan ya.",
         emoji: "🍚"
     },
 
@@ -192,7 +206,7 @@ const cheerMessages = [
     },
 
     {
-        text: "HP taruh bentar. Dunia masih ada kok.",
+        text: "HP taruh bentar. Dunia masih ada.",
         emoji: "📱"
     },
 
@@ -212,12 +226,12 @@ const cheerMessages = [
     },
 
     {
-        text: "Kayaknya hari ini cocok buat makan yang pedes.",
+        text: "Hari ini cocok makan yang pedes.",
         emoji: "🔥"
     },
 
     {
-        text: "Kalau semuanya ngeselin, mandi dulu deh.",
+        text: "Kalau semuanya ngeselin, mandi dulu.",
         emoji: "🚿"
     },
 
@@ -232,42 +246,42 @@ const cheerMessages = [
     },
 
     {
-        text: "Nggak harus produktif terus. Kamu manusia.",
+        text: "Nggak harus produktif terus.",
         emoji: "🧠"
     },
 
     {
-        text: "Istirahat bukan kalah.",
+        text: "Istirahat bukan berarti kalah.",
         emoji: "🌱"
     },
 
     {
-        text: "Jangan galak-galak sama diri sendiri.",
+        text: "Jangan galak sama diri sendiri.",
         emoji: "🥺"
     },
 
     {
-        text: "Hari ini cukup dijalani aja dulu.",
+        text: "Hari ini cukup dijalani dulu.",
         emoji: "☀️"
     },
 
     {
-        text: "Mungkin sekarang waktunya bilang: yaudah deh.",
+        text: "Kadang solusi terbaik: yaudah deh.",
         emoji: "😌"
     },
 
     {
-        text: "Masalahnya masih ada? Yaudah makan dulu.",
+        text: "Masalahnya masih ada? Makan dulu.",
         emoji: "🍔"
     },
 
     {
-        text: "Kalau pusing, coba jangan dipikirin selama lima menit.",
+        text: "Kalau pusing, jangan dipikirin lima menit.",
         emoji: "🫠"
     },
 
     {
-        text: "Mitha manusia. Bukan spons penyerap masalah.",
+        text: "Mimi bukan spons penyerap masalah.",
         emoji: "🧽"
     },
 
@@ -282,7 +296,7 @@ const cheerMessages = [
     },
 
     {
-        text: "Nggak semuanya harus punya jawaban sekarang.",
+        text: "Nggak semuanya butuh jawaban sekarang.",
         emoji: "💭"
     },
 
@@ -292,22 +306,22 @@ const cheerMessages = [
     },
 
     {
-        text: "Satu kopi, satu cemilan, baru kita bahas hidup.",
+        text: "Kopi + cemilan. Baru bahas hidup.",
         emoji: "☕"
     },
 
     {
-        text: "Tidur cukup adalah salah satu bentuk perjuangan.",
+        text: "Tidur cukup juga perjuangan.",
         emoji: "😴"
     },
 
     {
-        text: "Kalau belum membaik, besok kita coba lagi.",
+        text: "Kalau belum membaik, besok coba lagi.",
         emoji: "✨"
     },
 
     {
-        text: "Pokoknya hari ini jangan jahat sama Mitha.",
+        text: "Hari ini jangan jahat sama Mimi.",
         emoji: "🤍"
     }
 
@@ -315,53 +329,291 @@ const cheerMessages = [
 
 
 // ======================================================
-// OPEN WEBSITE
+// INITIAL SLIDE
 // ======================================================
 
-openButton.addEventListener("click", () => {
+window.addEventListener("DOMContentLoaded", () => {
 
-    if (websiteOpened) {
+    showElementsSequentially(slides[0]);
+
+});
+
+
+// ======================================================
+// START
+// ======================================================
+
+startButton.addEventListener("click", () => {
+
+    if (websiteStarted) {
         return;
     }
 
-    websiteOpened = true;
 
-    createParticles(openButton, 22);
+    websiteStarted = true;
 
-    opening.style.transition =
-        "opacity .65s ease, transform .65s ease";
 
-    opening.style.opacity = "0";
+    createParticles(
+        startButton,
+        20
+    );
 
-    opening.style.transform = "scale(1.035)";
+
+    startMusic();
+
+
+    musicButton.classList.remove("hidden");
+
+    pageIndicator.classList.remove("hidden");
 
 
     setTimeout(() => {
 
-        opening.classList.add("hidden");
+        goToSlide(1);
 
-        mainContent.classList.remove("hidden");
+    }, 350);
 
-        musicButton.classList.remove("hidden");
-
-
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: "instant"
-        });
+});
 
 
-        startMusic();
+// ======================================================
+// NEXT
+// ======================================================
+
+nextButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        if (
+            isTransitioning ||
+            currentSlide >= slides.length - 1
+        ) {
+            return;
+        }
+
+
+        createParticles(
+            button,
+            6
+        );
+
+
+        goToSlide(
+            currentSlide + 1
+        );
+
+    });
+
+});
+
+
+// ======================================================
+// BACK
+// ======================================================
+
+backButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        if (
+            isTransitioning ||
+            currentSlide <= 0
+        ) {
+            return;
+        }
+
+
+        goToSlide(
+            currentSlide - 1
+        );
+
+    });
+
+});
+
+
+// ======================================================
+// RESTART
+// ======================================================
+
+restartButton.addEventListener("click", () => {
+
+    goToSlide(0);
+
+
+    pageIndicator.classList.add("hidden");
+
+
+    setTimeout(() => {
+
+        websiteStarted = false;
+
+    }, 500);
+
+});
+
+
+// ======================================================
+// CHANGE SLIDE
+// ======================================================
+
+function goToSlide(newIndex) {
+
+    if (
+        newIndex < 0 ||
+        newIndex >= slides.length ||
+        newIndex === currentSlide
+    ) {
+        return;
+    }
+
+
+    clearAnimationTimers();
+
+
+    isTransitioning = true;
+
+
+    const oldSlide =
+        slides[currentSlide];
+
+
+    const newSlide =
+        slides[newIndex];
+
+
+    oldSlide.classList.add(
+        "slide-leaving"
+    );
+
+
+    resetSlideElements(
+        newSlide
+    );
+
+
+    setTimeout(() => {
+
+        oldSlide.classList.remove(
+            "active",
+            "slide-leaving"
+        );
+
+
+        newSlide.classList.add(
+            "active"
+        );
+
+
+        currentSlide =
+            newIndex;
+
+
+        updatePageIndicator();
+
+
+        showElementsSequentially(
+            newSlide
+        );
 
 
         setTimeout(() => {
-            checkReveal();
-        }, 150);
 
-    }, 620);
+            isTransitioning = false;
 
-});
+        }, 550);
+
+    }, 380);
+
+}
+
+
+// ======================================================
+// PAGE INDICATOR
+// ======================================================
+
+function updatePageIndicator() {
+
+    currentPageElement.textContent =
+        currentSlide + 1;
+
+}
+
+
+// ======================================================
+// SEQUENTIAL ANIMATION
+// ======================================================
+
+function showElementsSequentially(slide) {
+
+    clearAnimationTimers();
+
+
+    const elements =
+        slide.querySelectorAll("[data-show]");
+
+
+    elements.forEach((element, index) => {
+
+        element.classList.remove("show");
+
+
+        const timer =
+            setTimeout(() => {
+
+                element.classList.add(
+                    "show"
+                );
+
+            }, index * 1000);
+
+
+        animationTimers.push(
+            timer
+        );
+
+    });
+
+}
+
+
+// ======================================================
+// RESET SLIDE
+// ======================================================
+
+function resetSlideElements(slide) {
+
+    const elements =
+        slide.querySelectorAll("[data-show]");
+
+
+    elements.forEach(element => {
+
+        element.classList.remove(
+            "show"
+        );
+
+    });
+
+}
+
+
+// ======================================================
+// CLEAR TIMER
+// ======================================================
+
+function clearAnimationTimers() {
+
+    animationTimers.forEach(timer => {
+
+        clearTimeout(timer);
+
+    });
+
+
+    animationTimers = [];
+
+}
 
 
 // ======================================================
@@ -376,18 +628,20 @@ function startMusic() {
 
             musicPlaying = true;
 
-            musicButton.classList.add("playing");
+            musicButton.classList.add(
+                "playing"
+            );
 
-            musicIcon.textContent = "♫";
+            musicIcon.textContent =
+                "♫";
 
         })
         .catch(() => {
 
             musicPlaying = false;
 
-            musicButton.classList.remove("playing");
-
-            musicIcon.textContent = "♪";
+            musicIcon.textContent =
+                "♪";
 
         });
 
@@ -402,9 +656,12 @@ musicButton.addEventListener("click", () => {
 
         musicPlaying = false;
 
-        musicButton.classList.remove("playing");
+        musicButton.classList.remove(
+            "playing"
+        );
 
-        musicIcon.textContent = "♪";
+        musicIcon.textContent =
+            "♪";
 
         return;
     }
@@ -416,9 +673,12 @@ musicButton.addEventListener("click", () => {
 
             musicPlaying = true;
 
-            musicButton.classList.add("playing");
+            musicButton.classList.add(
+                "playing"
+            );
 
-            musicIcon.textContent = "♫";
+            musicIcon.textContent =
+                "♫";
 
         });
 
@@ -431,27 +691,28 @@ musicButton.addEventListener("click", () => {
 
 cheerButton.addEventListener("click", () => {
 
-    showRandomMessage();
+    showRandomCheer();
 
-    cheerButton.querySelector("span").textContent =
+
+    cheerButton.textContent =
         "Nah gitu dong 😌";
 
-    cheerButton.querySelector("small").textContent =
-        "boleh pencet lagi";
 
-    anotherButton.classList.remove("hidden");
+    anotherButton.classList.remove(
+        "hidden"
+    );
 
 });
 
 
 anotherButton.addEventListener("click", () => {
 
-    showRandomMessage();
+    showRandomCheer();
 
 });
 
 
-function showRandomMessage() {
+function showRandomCheer() {
 
     let randomIndex;
 
@@ -460,7 +721,8 @@ function showRandomMessage() {
 
         randomIndex =
             Math.floor(
-                Math.random() * cheerMessages.length
+                Math.random() *
+                cheerMessages.length
             );
 
     }
@@ -470,115 +732,41 @@ function showRandomMessage() {
     );
 
 
-    lastCheerIndex = randomIndex;
+    lastCheerIndex =
+        randomIndex;
 
 
-    const selectedMessage =
+    const message =
         cheerMessages[randomIndex];
 
 
-    cheerMessage.classList.remove("show");
+    cheerMessage.classList.remove(
+        "pop"
+    );
 
 
-    setTimeout(() => {
-
-        messageText.textContent =
-            selectedMessage.text;
-
-        messageEmoji.textContent =
-            selectedMessage.emoji;
+    void cheerMessage.offsetWidth;
 
 
-        cheerMessage.classList.add("show");
+    messageEmoji.textContent =
+        message.emoji;
 
 
-        createParticles(
-            cheerMessage,
-            12
-        );
-
-    }, 120);
-
-}
+    messageText.textContent =
+        message.text;
 
 
-// ======================================================
-// LAST MESSAGE
-// ======================================================
-
-lastMessageButton.addEventListener("click", () => {
-
-    lastMessage.classList.toggle("hidden");
-
-
-    if (
-        lastMessage.classList.contains("hidden")
-    ) {
-
-        lastMessageButton.textContent =
-            "ada satu lagi 🫧";
-
-        return;
-
-    }
-
-
-    lastMessageButton.textContent =
-        "hehe 🌼";
+    cheerMessage.classList.add(
+        "pop"
+    );
 
 
     createParticles(
-        lastMessageButton,
-        20
+        cheerMessage,
+        10
     );
 
-});
-
-
-// ======================================================
-// SCROLL REVEAL
-// ======================================================
-
-const revealElements =
-    document.querySelectorAll(".reveal");
-
-
-function checkReveal() {
-
-    const triggerPoint =
-        window.innerHeight - 90;
-
-
-    revealElements.forEach(element => {
-
-        const elementTop =
-            element.getBoundingClientRect().top;
-
-
-        if (elementTop < triggerPoint) {
-
-            element.classList.add("active");
-
-        }
-
-    });
-
 }
-
-
-window.addEventListener(
-    "scroll",
-    checkReveal,
-    {
-        passive: true
-    }
-);
-
-
-window.addEventListener(
-    "resize",
-    checkReveal
-);
 
 
 // ======================================================
@@ -587,7 +775,7 @@ window.addEventListener(
 
 function createBubble() {
 
-    if (!websiteOpened) {
+    if (!websiteStarted) {
         return;
     }
 
@@ -596,44 +784,48 @@ function createBubble() {
         document.createElement("div");
 
 
-    bubble.classList.add("bubble");
+    bubble.classList.add(
+        "bubble"
+    );
 
 
     const size =
-        Math.random() * 27 + 8;
-
-
-    const left =
-        Math.random() * 100;
+        Math.random() * 23 + 8;
 
 
     const duration =
-        Math.random() * 5 + 7;
+        Math.random() * 4 + 6;
 
 
-    const xMovement =
-        (Math.random() - 0.5) * 80;
+    const horizontal =
+        (Math.random() - .5) * 70;
 
 
     bubble.style.width =
         `${size}px`;
 
+
     bubble.style.height =
         `${size}px`;
 
+
     bubble.style.left =
-        `${left}%`;
+        `${Math.random() * 100}%`;
+
 
     bubble.style.animationDuration =
         `${duration}s`;
 
+
     bubble.style.setProperty(
         "--bubble-x",
-        `${xMovement}px`
+        `${horizontal}px`
     );
 
 
-    bubbleContainer.appendChild(bubble);
+    bubbleContainer.appendChild(
+        bubble
+    );
 
 
     setTimeout(() => {
@@ -652,12 +844,12 @@ setInterval(
 
 
 // ======================================================
-// PARTICLE BURST
+// PARTICLES
 // ======================================================
 
 function createParticles(
     element,
-    amount = 15
+    amount = 12
 ) {
 
     const symbols = [
@@ -665,8 +857,7 @@ function createParticles(
         "✨",
         "🫧",
         "🌼",
-        "⭐",
-        "•"
+        "⭐"
     ];
 
 
@@ -675,11 +866,13 @@ function createParticles(
 
 
     const centerX =
-        rect.left + rect.width / 2;
+        rect.left +
+        rect.width / 2;
 
 
     const centerY =
-        rect.top + rect.height / 2;
+        rect.top +
+        rect.height / 2;
 
 
     for (
@@ -689,10 +882,14 @@ function createParticles(
     ) {
 
         const particle =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
 
-        particle.classList.add("particle");
+        particle.classList.add(
+            "particle"
+        );
 
 
         particle.textContent =
@@ -707,20 +904,19 @@ function createParticles(
         particle.style.left =
             `${centerX}px`;
 
+
         particle.style.top =
             `${centerY}px`;
 
 
-        particle.style.fontSize =
-            `${Math.random() * 8 + 10}px`;
-
-
         const x =
-            (Math.random() - 0.5) * 230;
+            (Math.random() - .5) *
+            200;
 
 
         const y =
-            (Math.random() - 0.5) * 230;
+            (Math.random() - .5) *
+            200;
 
 
         particle.style.setProperty(
@@ -749,87 +945,3 @@ function createParticles(
     }
 
 }
-
-
-// ======================================================
-// PHOTO CARD TOUCH EFFECT
-// ======================================================
-
-const photoCards =
-    document.querySelectorAll(".photo-card");
-
-
-photoCards.forEach(card => {
-
-    card.addEventListener(
-        "touchstart",
-        () => {
-
-            card.style.zIndex = "15";
-
-        },
-        {
-            passive: true
-        }
-    );
-
-
-    card.addEventListener(
-        "touchend",
-        () => {
-
-            setTimeout(() => {
-
-                card.style.zIndex = "";
-
-            }, 300);
-
-        },
-        {
-            passive: true
-        }
-    );
-
-});
-
-
-// ======================================================
-// LITTLE CARD TOUCH
-// ======================================================
-
-const littleCards =
-    document.querySelectorAll(".little-card");
-
-
-littleCards.forEach(card => {
-
-    card.addEventListener(
-        "click",
-        () => {
-
-            createParticles(
-                card,
-                8
-            );
-
-        }
-    );
-
-});
-
-
-// ======================================================
-// INITIAL
-// ======================================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        window.scrollTo(
-            0,
-            0
-        );
-
-    }
-);
